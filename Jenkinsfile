@@ -27,5 +27,12 @@ pipeline {
         }
       }
     }
+    stage('SonarQube Analysis') {
+    withMaven(maven: 'mvn') {
+    withSonarQubeEnv() {
+      sh "mvn clean verify sonar:sonar -Dsonar.projectKey=DevOpsTest"
+    }
+  }
+    }
   }
 }
