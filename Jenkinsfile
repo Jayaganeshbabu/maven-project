@@ -20,7 +20,7 @@ pipeline {
       steps {
         script {
           dir("code") {
-            withMaven {
+            withMaven(maven: 'mvn') {
               sh "mvn clean install"
             }
           }
