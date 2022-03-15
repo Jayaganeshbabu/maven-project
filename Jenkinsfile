@@ -30,7 +30,7 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         withMaven(maven: 'mvn') {
-          withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+          withSonarQubeEnv('My Sonar Server') {
             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=DevOpsTest"
           }
         }
