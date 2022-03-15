@@ -28,11 +28,13 @@ pipeline {
       }
     }
     stage('SonarQube Analysis') {
-    withMaven(maven: 'mvn') {
-    withSonarQubeEnv() {
-      sh "mvn clean verify sonar:sonar -Dsonar.projectKey=DevOpsTest"
-    }
-  }
+      steps {
+        withMaven(maven: 'mvn') {
+          withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=DevOpsTest"
+          }
+        }
+      }
     }
   }
 }
