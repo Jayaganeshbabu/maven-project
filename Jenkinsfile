@@ -20,8 +20,9 @@ pipeline {
       steps {
         script {
           dir("code") {
-            sh "echo This is build stage"
-            sh "mvn clean install package"
+            withMaven(globalMavenSettingsConfig: 'null', jdk: 'null', maven: 'mvn', mavenSettingsConfig: 'null') {
+              sh "mvn clean install"
+            }
           }
         }
       }
